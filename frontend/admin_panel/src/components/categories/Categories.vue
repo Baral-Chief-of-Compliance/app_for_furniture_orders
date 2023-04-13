@@ -53,7 +53,7 @@
                         class="mx-5 mb-5"
                     >
                     </v-text-field>
-                    <v-text-field v-for="(quantity_categories, categories) in categories"
+                    <v-text-field v-for="(categories, quantity_categories) in categories"
                         v-model="categories.value"
                         label="Название характеристики"
                         class="mx-5 mb-5"
@@ -102,6 +102,7 @@ export default{
             if (this.quantity_categories === 1){
                 this.show_btn_delet_category = false
             }
+            this.categories.pop()
         }
     }
 }
