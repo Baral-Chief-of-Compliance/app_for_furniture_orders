@@ -46,23 +46,25 @@
                 <v-card-title>
                     Форма добавления для категории
                 </v-card-title>
+                <v-card-text>
+                   <b>Такие характеристики как "цена", "количество", "описание", "рейтинг" добавлять не надо</b> 
+                </v-card-text>
                 <v-form>
                     <v-text-field
-                        v-model="name_control"
+                        v-model="name_category"
                         label="Название категории"
                         class="mx-5 mb-5"
                     >
                     </v-text-field>
-                    <v-text-field v-for="(categories, quantity_categories) in categories"
-                        v-model="categories.value"
+                    <v-text-field v-for="(characteristics, quantity_characteristics) in characteristics"
+                        v-model="characteristics.value"
                         label="Название характеристики"
                         class="mx-5 mb-5"
-                        :key="quantity_categories"
+                        :key="quantity_characteristics"
                     >
                     </v-text-field>
 
                 </v-form>
-                {{ this.categories }}
                     <v-btn color="grey-darken-2" class="mx-5 mb-5" @click="add_category()" >
                         Добавить характеристику
                     </v-btn>
@@ -71,7 +73,7 @@
                     </v-btn>
                 <v-card-actions>
                     <v-btn color="red-accent-4"  @click="dialog = false">Закрыть</v-btn>
-                    <v-btn color="green-accent-4"  @click="add_forms_of_work">Добавить</v-btn>
+                    <v-btn color="green-accent-4"  @click="send_categories">Добавить</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>  
@@ -85,24 +87,36 @@ import axios from "axios"
 export default{
     data: () => ({
         dialog: false,
-        quantity_categories: 1,
-        categories: [],
+        quantity_characteristics: 1,
+        characteristics: [],
         show_btn_delet_category: false,
+        name_category: ""
     }),
     methods: {
         add_category(){
-            this.quantity_categories++
-            if (this.quantity_categories === 2){
+            this.quantity_characteristics++
+            if (this.quantity_characteristics === 2){
                 this.show_btn_delet_category = true
             }
-            this.categories.push({value: ""})
+            this.characteristics.push({value: ""})
         },
         delete_category(){
-            this.quantity_categories--
-            if (this.quantity_categories === 1){
+            this.quantity_characteristics--
+            if (this.quantity_characteristics === 1){
                 this.show_btn_delet_category = false
             }
-            this.categories.pop()
+            this.characteristics.pop()
+        },
+        send_categories(){
+            axios.post("http://127.0.0.1:5000/admin_panel/api/v1.0/categories", {
+                name_category: this.name_category,
+                characteristics: this.characteristics
+            })
+
+            this.characteristics = [],
+            this.name_category = "",
+            this.quantity_characteristics = 1,
+            this.dialog = true
         }
     }
 }
