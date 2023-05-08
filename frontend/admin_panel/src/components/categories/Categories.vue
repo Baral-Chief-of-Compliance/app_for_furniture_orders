@@ -11,14 +11,14 @@
                 <v-container class="d-flex justify-center">
                     <v-col>
                         <v-row class="mx-10">
-                            <!-- <v-col  v-for="f in forms_of_work" :key="f.num_work" cols="12" md="3"  v-bind="props_hover">
+                            <v-col  v-for="c in categories" cols="12" md="3"  v-bind="props_hover">
                                 <v-hover v-slot="{ isHovering, props }" >
                                     <v-card  class="mx-auto" height="200" width="300" 
                                         v-bind="props"
-                                        :color="isHovering ? 'indigo': undefined"
+                                        :color="isHovering ? 'amber': undefined"
                                     >
                                         <v-card-item class="text-h6">
-                                            {{ f.name_control }}
+                                            {{ c.name }}
                                         </v-card-item>
                                     </v-card>
 
@@ -28,7 +28,7 @@
                                         >Удалить</v-btn>
                                     </v-card-actions>
                                 </v-hover>
-                            </v-col> -->
+                            </v-col>
                         </v-row>    
                         <v-row class="mx-14 mt-15">
                             <v-btn  block
@@ -90,8 +90,13 @@ export default{
         quantity_characteristics: 1,
         characteristics: [],
         show_btn_delet_category: false,
-        name_category: ""
+        name_category: "",
+        categories: []
     }),
+
+    mounted(){
+        this.get_categories()
+    },
     methods: {
         add_category(){
             this.quantity_characteristics++
@@ -117,6 +122,10 @@ export default{
             this.name_category = "",
             this.quantity_characteristics = 1,
             this.dialog = true
+        },
+        get_categories(){
+            axios.get("http://127.0.0.1:5000/admin_panel/api/v1.0/categories/1")
+            .then(response  => this.categories = response.data.categories)
         }
     }
 }

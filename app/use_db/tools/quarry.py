@@ -23,4 +23,4 @@ def call(quarry, *args, commit, fetchall):
             result_of_quarry = cur.fetchone()
             cur.close()
 
-    return
+    return result_of_quarry

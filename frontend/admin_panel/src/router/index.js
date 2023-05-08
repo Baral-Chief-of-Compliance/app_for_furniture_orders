@@ -18,9 +18,24 @@ const routes = [
         path: 'operator/categories',
         name: 'add_category',
         component: () => import('@/components/categories/Categories.vue')
+      },
+      {
+        path: 'operator/categories/:id',
+        name: 'category',
+        component: () => import('@/components/categories/Categorie.vue')
       }
     ],
   },
+  {
+    path: '/login-employer',
+    name: 'LoginEmployer',
+    component: () => import('@/views/login/LoginEmp.vue')
+  },
+  {
+    path: '/login-client',
+    name: 'LoginClient',
+    component: () => import('@/views/login/LoginCli.vue')
+  }
 ]
 
 const router = createRouter({

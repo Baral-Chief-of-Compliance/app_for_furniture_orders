@@ -21,3 +21,12 @@ def create_categories(name_category, characteristics, id_p):
     quarry_text = quarry_text + f"foreign key (id_p) references provider(id_p) on delete cascade on update cascade );"
 
     quarry.call(quarry_text, commit=True, fetchall=False)
+
+
+def show_tables_for_operator():
+    inf = quarry.call("select table_name from information_schema.columns where column_name = %s",
+                      ['id_p'], commit=False, fetchall=True)
+
+    print(inf)
+
+    return inf

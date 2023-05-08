@@ -32,3 +32,25 @@ def all_categories():
             "name_category": name_category,
             "characteristics": json_characteristics
         })
+
+
+@categories.route('/categories/<int:id>', methods=['GET', 'POST'])
+def show_categories_for_employer(id):
+    if request.method == 'GET':
+        categories = []
+        all_tables = categories_db.show_tables_for_operator()
+
+        for t in all_tables:
+            print(t[0])
+            if "_" in t[0]:
+                print("нашел")
+                new_t = t[0].split("_")
+                print(new_t[0])
+                if new_t[1] == f'{id}':
+                    categories.append({
+                        "name": new_t[0]
+                    })
+
+        return jsonify({
+            "categories": categories
+        })

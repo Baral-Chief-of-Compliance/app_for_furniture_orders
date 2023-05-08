@@ -3,13 +3,13 @@
     <template v-slot:activator="{ props }">
       <v-list-item
         v-bind="props"
-        prepend-icon="mdi-account-multiple"
-        title="Студенты"
+        prepend-icon="mdi-table-large"
+        title="Категории"
       ></v-list-item>
     </template>
 
     <v-list-item
-      v-for="([title, icon, to], i) in students"
+      v-for="([title, icon, to], i) in categories"
       :key="i"
       :title="title"
       :prepend-icon="icon"
@@ -18,17 +18,17 @@
     ></v-list-item>
   </v-list-group>
 
-  <v-list-group value="Teachers">
+  <v-list-group value="Orders">
     <template v-slot:activator="{ props }">
       <v-list-item
         v-bind="props"
-        prepend-icon="mdi-account-details"
-        title="Преподаватели"
+        prepend-icon="mdi-package-variant-closed"
+        title="Заказы"
       ></v-list-item>
     </template>
 
     <v-list-item
-      v-for="([title, icon, to], i) in teachers"
+      v-for="([title, icon, to], i) in orders"
       :key="i"
       :title="title"
       :prepend-icon="icon"
@@ -39,39 +39,17 @@
     
   </v-list-group>
 
-  <v-list-group value="Disciplines">
-    <template v-slot:activator="{ props }">
-      <v-list-item
-        v-bind="props"
-        prepend-icon="mdi-application"
-        title="Дисциплины"
-      ></v-list-item>
-    </template>
-
-    <v-list-item
-      v-for="([title, icon, to], i) in disciplines"
-      :key="i"
-      :title="title"
-      :prepend-icon="icon"
-      :value="title"
-      :to="to"
-    ></v-list-item>
-
-    
-  </v-list-group>
 </template>
 
 <script>
   export default {
     data: () => ({
-        students: [
-        ['Список', 'mdi-account-multiple', '/students'],
+      categories: [
+        ['Добавить', 'mdi-table-plus', '/operator/categories']
       ],
-      teachers:[
-        ['Список', 'mdi-account-multiple', '/teachers'],
-      ],
-      disciplines: [
-        ['Список', 'mdi-file-outline', '/disciplines']
+      orders:[
+        ['Список', 'mdi-animation', '/teachers'],
+        ['Добавить', 'mdi-package-variant', '/teachers']
       ],
     }),
   }
