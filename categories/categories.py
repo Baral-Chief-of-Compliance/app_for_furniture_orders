@@ -8,49 +8,55 @@ categories = Blueprint('categories', __name__)
 @categories.route('/categories', methods=['GET', 'POST'])
 def all_categories():
     if request.method == 'POST':
-        json_characteristics = []
-        name_category = request.json["name_category"]
-        characteristics = request.json["characteristics"]
-        print(name_category, characteristics)
+        id_p = request.json["id_p"]
+        categories_name = request.json["categories_name"].lower()
 
-        for c in characteristics:
-            json_characteristics.append(c["value"])
+        categories_db.create_categories(id_p, categories_name)
 
-        json_characteristics.append('цена')
-        json_characteristics.append('количество')
-        json_characteristics.append('описание')
-        json_characteristics.append('рейтинг')
-        json_characteristics.append('id_p')
+        return jsonify(f"category {categories_name} for provide {id_p} is add")
 
-        print({
-            "name_category": name_category,
-            "characteristics": json_characteristics
-        })
+    elif request.method == "GET":
 
-        categories_db.create_categories(name_category, json_characteristics, 1)
-        return jsonify({
-            "name_category": name_category,
-            "characteristics": json_characteristics
-        })
+        json_categories = []
+
+        categories = categories_db.all_categories(1)
+
+        for cat in categories:
+            json_categories.append({"id_cat": cat[0], "name_cat": cat[1]})
+
+        return jsonify(json_categories)
 
 
-@categories.route('/categories/<int:id>', methods=['GET', 'POST'])
-def show_categories_for_employer(id):
-    if request.method == 'GET':
-        categories = []
-        all_tables = categories_db.show_tables_for_operator()
+@categories.route('/categories/<int:id_cat>', methods=['GET', 'POST', 'DELETE'])
+def show_categories_for_employer(id_cat):
+    if request.method == "DELETE":
+        categories_db.delete_category(id_cat)
 
-        for t in all_tables:
-            print(t[0])
-            if "_" in t[0]:
-                print("нашел")
-                new_t = t[0].split("_")
-                print(new_t[0])
-                if new_t[1] == f'{id}':
-                    categories.append({
-                        "name": new_t[0]
-                    })
+        return jsonify(f"category {id_cat} is delete")
 
-        return jsonify({
-            "categories": categories
-        })
+    elif request.method == "GET":
+        json_products = []
+
+        name_cat, products = categories_db.get_category_with_product(id_cat)
+
+        for product in products:
+            json_products.append({
+                "id_product": product[0],
+                "name_product": product[2],
+                "quantity_product": product[3],
+                "price_product": product[4],
+                "raiting_product": product[5],
+                "description_product": product[6],
+                "color_product": product[7],
+                "height_product": product[8],
+                "width_product": product[9],
+                "long_product": product[10]
+            })
+
+        inf_category = {
+            "name": name_cat[0],
+            "products": products
+        }
+
+        return jsonify(inf_category)
+

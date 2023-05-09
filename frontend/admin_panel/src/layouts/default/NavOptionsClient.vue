@@ -48,8 +48,8 @@
         ['Добавить', 'mdi-table-plus', '/operator/categories']
       ],
       orders:[
-        ['Список', 'mdi-animation', ''],
-        ['Добавить', 'mdi-package-variant', '']
+        ['Список', 'mdi-animation', '/teachers'],
+        ['Добавить', 'mdi-package-variant', '/teachers']
       ],
     }),
   }
