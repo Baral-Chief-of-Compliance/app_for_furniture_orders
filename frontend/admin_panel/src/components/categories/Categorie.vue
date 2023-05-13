@@ -27,6 +27,7 @@
                     label="Название"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -35,6 +36,7 @@
                     label="Описание"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -43,6 +45,7 @@
                     label="Количество"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -51,6 +54,7 @@
                     label="Цена"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -59,6 +63,7 @@
                     label="Цвет"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -67,6 +72,7 @@
                     label="Высота(см)"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -75,6 +81,7 @@
                     label="Ширина(см)"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
@@ -83,13 +90,14 @@
                     label="Длинна(см)"
                     color="black"
                     class="mx-5"
+                    variant="underlined"
                 >
                 </v-text-field>
 
                 </v-form>
                 <v-card-actions>
                 <v-btn color="red"  @click="dialog = false">Закрыть</v-btn>
-                <v-btn color="green"  @click="create_brigade">Добавить</v-btn>
+                <v-btn color="green"  @click=" add_product()">Добавить</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -104,9 +112,21 @@ import axios from "axios"
         dialog: false,
         show_btn_delet_category: false,
         name_category: "",
-        products: []
+        products: [],
+        name_product: "",
+        quantity_product: "",
+        price_product: "",
+        description_product: "",
+        color_product: "",
+        height_product: "",
+        width_product: "",
+        long_product: ""
     }),
     mounted(){
+        this.get_inf_category()
+    },
+
+    updated(){
         this.get_inf_category()
     },
     methods: {
@@ -133,8 +153,17 @@ import axios from "axios"
                 width_product: this.width_product,
                 long_product: this.long_product
             }
-            
             )
+            this.name_product = "",
+            this.quantity_product = "",
+            this.price_product = "",
+            this.description_product = "",
+            this.color_product = "",
+            this.height_product = "",
+            this.width_product = "",
+            this.long_product = "",
+            this.dialog = false
+            
         }
     }
 }

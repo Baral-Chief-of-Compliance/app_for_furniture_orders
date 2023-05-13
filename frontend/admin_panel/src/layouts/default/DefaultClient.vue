@@ -18,7 +18,7 @@
           <v-divider></v-divider>
   
       <v-list>
-        <nav-options />
+        <nav-options-client/>
       </v-list>
         </v-navigation-drawer>
   
@@ -31,5 +31,5 @@
   
   <script setup>
     import DefaultView from './View.vue'
-    import NavOptions from './NavOptions.vue';
+    import NavOptionsClient from './NavOptionsClient.vue';
   </script>

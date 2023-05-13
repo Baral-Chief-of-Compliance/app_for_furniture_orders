@@ -55,7 +55,7 @@ def show_categories_for_employer(id_cat):
 
         inf_category = {
             "name": name_cat[0],
-            "products": products
+            "products": json_products
         }
 
         return jsonify(inf_category)

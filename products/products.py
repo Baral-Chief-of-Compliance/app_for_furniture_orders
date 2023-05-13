@@ -25,3 +25,22 @@ def create_product():
         products_db.create_product(atr)
 
         return jsonify(f"product {name_product} for {id_cat} is add")
+
+
+@products.route('/products/<int:id_product>', methods=['GET'])
+def product(id_product):
+
+    product = products_db.show_inf_about_product(id_product)
+
+    return jsonify({
+        "id_product": product[0],
+        "name_product": product[2],
+        "quantity_product": product[3],
+        "price_product": product[4],
+        "raiting_product": product[5],
+        "description_product": product[6],
+        "color_product": product[7],
+        "height_product": product[8],
+        "width_product": product[9],
+        "long_product": product[10]
+    })

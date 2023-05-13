@@ -52,6 +52,7 @@
                         v-model="categories_name"
                         label="Название категории"
                         class="mx-5 mb-5"
+                        variant="underlined"
                     >
                     </v-text-field>
                 </v-form>

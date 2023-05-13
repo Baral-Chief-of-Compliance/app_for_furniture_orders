@@ -8,3 +8,11 @@ def create_product(atr):
                 "(%s, %s, %s, %s, %s, %s, %s, %s, %s)", atr, commit=True,
                 fetchall=False
                 )
+
+
+def show_inf_about_product(id_product):
+    inf = quarry.call("select * from product "
+                      "where product.id_product = %s", [id_product],
+                      commit=False, fetchall=False)
+
+    return inf
