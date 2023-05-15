@@ -80,7 +80,7 @@
         // ['Оформить', 'mdi-package-variant', '/teachers']
       ],
       products:[
-        ['Список', 'mdi-cube-unfolded', '/teachers']
+        ['Список', 'mdi-cube-unfolded', '/client/client_products']
       ],
     }),
   }

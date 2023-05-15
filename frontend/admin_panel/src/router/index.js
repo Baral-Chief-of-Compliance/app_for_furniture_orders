@@ -92,6 +92,11 @@ const routes = [
         path: 'client_application_inf',
         name: 'ClientApplicationInf',
         component: () => import('@/components/client/ClientApplicationInf.vue')
+      },
+      {
+        path: 'client_products',
+        name: 'ClientProducts',
+        component: () => import('@/components/client/ClientProducts.vue')
       }
     ],
   }
