@@ -15,7 +15,13 @@
                     <v-spacer></v-spacer>
                     <b class="pr-2">Осталось:</b> {{ this.quantity_product }} <b class="pl-2">штук</b>
                     <v-spacer></v-spacer>
-                    <b class="pr-2">Рейтинг:</b> 5 <b class="pl-2">баллов</b>
+                    <b class="pr-2">Рейтинг:</b> 
+                        <v-icon color="yellow" icon="mdi-star"/> 
+                        <v-icon color="yellow" icon="mdi-star"/>
+                        <v-icon color="yellow" icon="mdi-star"/>
+                        <v-icon color="yellow" icon="mdi-star"/>
+                        <v-icon color="yellow" icon="mdi-star"/>
+                    <b class="pl-2">баллов</b>
             </v-card>
             <div class="text-h5 py-6 mx-10 text-left">Описание:</div>
             <v-card
@@ -40,11 +46,33 @@
             </v-card>
 
             <v-row class="mx-14 mt-15">
-                <v-btn  block
-                    color="green-accent-4"
+                <v-dialog
+                    v-model="dialog"
+                    width="auto"
                 >
-                    Добавить в корзину
-                </v-btn>
+                    <template v-slot:activator="{ props }">
+                        <v-btn  block
+                            color="green-accent-4"
+                            v-bind="props"
+                        >
+                            Добавить в корзину
+                        </v-btn>
+                    </template>    
+                    
+                    <v-card>
+                        <v-card-title>
+                            Введите количество товара
+                        </v-card-title>
+                        <v-card-text>
+                            <v-text-field type="number" label="количество товара" variant="underlined"></v-text-field>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn color="red" @click="dialog = false">Закрыть</v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn color="green" @click="dialog = false">Добавить в корзину</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </v-row>
         </v-col>
     </v-container>
@@ -70,7 +98,9 @@ export default{
             color_product: "",
             height_product: "",
             width_product: "",
-            long_product: ""
+            long_product: "",
+
+            dialog: false
         }
     },
 

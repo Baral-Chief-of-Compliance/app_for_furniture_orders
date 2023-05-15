@@ -57,8 +57,14 @@
       :to="to"
     ></v-list-item>
 
-    
   </v-list-group>
+
+      <v-list-item
+        prepend-icon="mdi-basket"
+        title="Корзина"
+        :to="{name: 'ClientBasket'}"
+      ></v-list-item>
+
 
 </template>
 
@@ -69,7 +75,8 @@
         ['Список', 'mdi-account-multiple', '/client/providers']
       ],
       orders:[
-        ['Список', 'mdi-animation', '/teachers']
+        ['Активные', 'mdi-animation', '/client/active_client_applications'],
+        ['Закрытые', 'mdi-animation-outline', '/client/close_client_applications']
         // ['Оформить', 'mdi-package-variant', '/teachers']
       ],
       products:[

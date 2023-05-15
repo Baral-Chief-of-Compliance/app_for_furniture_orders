@@ -67,6 +67,31 @@ const routes = [
         path: 'providers/:id_p/category/:cat_id/product/:id_product',
         name: 'ProviderProduct',
         component: () => import('@/components/client/ProviderProduct.vue')
+      },
+      {
+        path: 'basket',
+        name: 'ClientBasket',
+        component: () => import('@/components/client/ClientBasket.vue')
+      },
+      {
+        path: 'create_application',
+        name: 'ClientCreateApplication',
+        component: () => import('@/components/client/ClientCreateApplication.vue')
+      },
+      {
+        path: 'active_client_applications',
+        name: 'ActiveClientApplications',
+        component: () => import('@/components/client/ActiveClientApplications.vue')
+      },
+      {
+        path: 'close_client_applications',
+        name: 'CloseClientApplications',
+        component: () => import('@/components/client/CloseClientApplications.vue')
+      },
+      {
+        path: 'client_application_inf',
+        name: 'ClientApplicationInf',
+        component: () => import('@/components/client/ClientApplicationInf.vue')
       }
     ],
   }
